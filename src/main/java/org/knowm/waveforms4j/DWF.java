@@ -220,9 +220,22 @@ public class DWF {
 
   public native boolean FDwfDigitalOutEnableSet(int idxChannel, boolean enable);
 
+  /**
+   * Sets the output type of the specified channel.
+   * @param idxChannel - The channel index.
+   * @param dwfDigitalOutType - 0 (DwfDigitalOutTypePulse), 1 (DwfDigitalOutTypeCustom),
+   * 2 (DwfDigitalOutTypeRandom) or 3 (DwfDigitalOutTypeFSM).
+   * @return
+   */
+  public native boolean FDwfDigitalOutTypeSet(int idxChannel, int dwfDigitalOutType);
+
   public native double FDwfDigitalOutInternalClockInfo();
 
-  public native boolean FDwfDigitalOutDividerSet(int idxChannel, int frequency);
+  public native boolean FDwfDigitalOutDividerSet(int idxChannel, int divider);
+
+  public boolean FDwfDigitalOutFrequencySet(int idxChannel, int frequency) {
+    return FDwfDigitalOutDividerSet(idxChannel, (int) (FDwfDigitalOutInternalClockInfo() / frequency));
+  }
 
   public native boolean FDwfDigitalOutCounterSet(int idxChannel, int low, int high);
 
@@ -231,7 +244,89 @@ public class DWF {
 
   public native boolean FDwfDigitalOutConfigure(boolean start);
 
+  public native boolean FDwfDigitalOutDataSet(int idxChannel, byte[] rgdData, int size);
+
+  public native boolean FDwfDigitalOutRunSet(double secRun);
+
+  public native boolean FDwfDigitalOutRepeatSet(int cRepeat);
+
+  public native byte FDwfDigitalOutStatus();
+
   public native boolean FDwfDigitalOutReset();
+
+  // ///////////////////////////////////////////////////////////
+  // Digital In ///////////////////////////////////////////////
+  // ///////////////////////////////////////////////////////////
+
+  public native boolean FDwfDigitalInReset();
+
+  public native boolean FDwfDigitalInConfigure(boolean fReconfigure, boolean fStart);
+
+  /**
+   * Used to check the state of the instrument. For single acquisition mode, the data will be read only when the
+   * acquisition is finished. 
+   * @param fReadData - {@code true} if data should be read.
+   * @return STS type. One of: stsRdy (0), stsArm (1), stsDone (2), stsTrig (3), stsCfg (4), stsPrefill (5),
+   * stsNotDone (6), stsTrigDly (7), stsError (8), stsBusy (9) or stsStop (10).
+   */
+  public native byte FDwfDigitalInStatus(boolean fReadData);
+
+//  public native boolean FDwfDigitalInStatusSamplesLeft(int[] pcSamplesLeft);
+
+//  public native boolean FDwfDigitalInStatusSamplesValid(int[]  pcSamplesValid);
+
+//  public native boolean FDwfDigitalInStatusIndexWrite(int[] pidxWrite);
+
+//  public native boolean FDwfDigitalInStatusAutoTriggered(boolean[] pfAuto);
+
+  public native byte[] FDwfDigitalInStatusData(int countOfDataBytes);
+
+  public native double FDwfDigitalInInternalClockInfo();
+
+//  public native boolean FDwfDigitalInClockSourceInfo(int[] pfsDwfDigitalInClockSource);
+
+//  public native boolean FDwfDigitalInClockSourceSet(DwfDigitalInClockSource v);
+
+//  public native DwfDigitalInClockSource FDwfDigitalInClockSourceGet();
+
+  public native int FDwfDigitalInDividerInfo();
+
+  public native boolean FDwfDigitalInDividerSet(int div);
+
+//  public native boolean FDwfDigitalInDividerGet(int[] pdiv);
+
+//  public native int FDwfDigitalInBitsInfo();
+
+  public native boolean FDwfDigitalInSampleFormatSet(int nBits) ;
+
+//  public native int FDwfDigitalInSampleFormatGet();
+
+//  public native int FDwfDigitalInBufferSizeInfo();
+
+  public native boolean FDwfDigitalInBufferSizeSet(int nSize);
+
+//  public native int FDwfDigitalInBufferSizeGet();
+
+//  public native boolean FDwfDigitalInSampleModeInfo(int[] pfsDwfDigitalInSampleMode);
+
+//  public native boolean FDwfDigitalInSampleModeSet(DwfDigitalInSampleMode v);
+
+//  public native DwfDigitalInSampleMode FDwfDigitalInSampleModeGet(D);
+
+//  public native int FDwfDigitalInAcquisitionModeInfo();
+
+  public native boolean FDwfDigitalInTriggerSourceSet(byte trigsrc);
+
+  public native boolean FDwfDigitalInTriggerPositionSet(int cSamplesAfterTrigger);
+
+  /**
+   * Used to set the acquisition mode.
+   * @param acqmode - acqmodeSingle (0), acqmodeScanShift (1), acqmodeScanScreen (2) or acqmodeRecord (3).
+   * @return {@code true} on success, {@code false} otherwise.
+   */
+  public native boolean FDwfDigitalInAcquisitionModeSet(int acqmode);
+
+//  public native ACQMODE FDwfDigitalInAcquisitionModeGet();
 
   // ///////////////////////////////////////////////////////////
   // Analog In ////////////////////////////////////////////////

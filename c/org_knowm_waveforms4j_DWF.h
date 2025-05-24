@@ -109,6 +109,14 @@ JNIEXPORT jboolean JNICALL Java_org_knowm_waveforms4j_DWF_FDwfDigitalOutEnableSe
 
 /*
  * Class:     org_knowm_waveforms4j_DWF
+ * Method:    FDwfDigitalOutTypeSet
+ * Signature: (II)Z
+ */
+JNIEXPORT jboolean JNICALL Java_org_knowm_waveforms4j_DWF_FDwfDigitalOutTypeSet
+  (JNIEnv *, jobject, jint, jint);
+
+/*
+ * Class:     org_knowm_waveforms4j_DWF
  * Method:    FDwfDigitalOutInternalClockInfo
  * Signature: ()D
  */
@@ -149,11 +157,139 @@ JNIEXPORT jboolean JNICALL Java_org_knowm_waveforms4j_DWF_FDwfDigitalOutConfigur
 
 /*
  * Class:     org_knowm_waveforms4j_DWF
+ * Method:    FDwfDigitalOutDataSet
+ * Signature: (I[BI)Z
+ */
+JNIEXPORT jboolean JNICALL Java_org_knowm_waveforms4j_DWF_FDwfDigitalOutDataSet
+  (JNIEnv *, jobject, jint, jbyteArray, jint);
+
+/*
+ * Class:     org_knowm_waveforms4j_DWF
+ * Method:    FDwfDigitalOutRunSet
+ * Signature: (D)Z
+ */
+JNIEXPORT jboolean JNICALL Java_org_knowm_waveforms4j_DWF_FDwfDigitalOutRunSet
+  (JNIEnv *, jobject, jdouble);
+
+/*
+ * Class:     org_knowm_waveforms4j_DWF
+ * Method:    FDwfDigitalOutRepeatSet
+ * Signature: (I)Z
+ */
+JNIEXPORT jboolean JNICALL Java_org_knowm_waveforms4j_DWF_FDwfDigitalOutRepeatSet
+  (JNIEnv *, jobject, jint);
+
+/*
+ * Class:     org_knowm_waveforms4j_DWF
+ * Method:    FDwfDigitalOutStatus
+ * Signature: ()B
+ */
+JNIEXPORT jbyte JNICALL Java_org_knowm_waveforms4j_DWF_FDwfDigitalOutStatus
+  (JNIEnv *, jobject);
+
+/*
+ * Class:     org_knowm_waveforms4j_DWF
  * Method:    FDwfDigitalOutReset
  * Signature: ()Z
  */
 JNIEXPORT jboolean JNICALL Java_org_knowm_waveforms4j_DWF_FDwfDigitalOutReset
   (JNIEnv *, jobject);
+
+/*
+ * Class:     org_knowm_waveforms4j_DWF
+ * Method:    FDwfDigitalInReset
+ * Signature: ()Z
+ */
+JNIEXPORT jboolean JNICALL Java_org_knowm_waveforms4j_DWF_FDwfDigitalInReset
+  (JNIEnv *, jobject);
+
+/*
+ * Class:     org_knowm_waveforms4j_DWF
+ * Method:    FDwfDigitalInConfigure
+ * Signature: (ZZ)Z
+ */
+JNIEXPORT jboolean JNICALL Java_org_knowm_waveforms4j_DWF_FDwfDigitalInConfigure
+  (JNIEnv *, jobject, jboolean, jboolean);
+
+/*
+ * Class:     org_knowm_waveforms4j_DWF
+ * Method:    FDwfDigitalInStatus
+ * Signature: (Z)B
+ */
+JNIEXPORT jbyte JNICALL Java_org_knowm_waveforms4j_DWF_FDwfDigitalInStatus
+  (JNIEnv *, jobject, jboolean);
+
+/*
+ * Class:     org_knowm_waveforms4j_DWF
+ * Method:    FDwfDigitalInStatusData
+ * Signature: (I)[B
+ */
+JNIEXPORT jbyteArray JNICALL Java_org_knowm_waveforms4j_DWF_FDwfDigitalInStatusData
+  (JNIEnv *, jobject, jint);
+
+/*
+ * Class:     org_knowm_waveforms4j_DWF
+ * Method:    FDwfDigitalInInternalClockInfo
+ * Signature: ()D
+ */
+JNIEXPORT jdouble JNICALL Java_org_knowm_waveforms4j_DWF_FDwfDigitalInInternalClockInfo
+  (JNIEnv *, jobject);
+
+/*
+ * Class:     org_knowm_waveforms4j_DWF
+ * Method:    FDwfDigitalInDividerInfo
+ * Signature: ()I
+ */
+JNIEXPORT jint JNICALL Java_org_knowm_waveforms4j_DWF_FDwfDigitalInDividerInfo
+  (JNIEnv *, jobject);
+
+/*
+ * Class:     org_knowm_waveforms4j_DWF
+ * Method:    FDwfDigitalInDividerSet
+ * Signature: (I)Z
+ */
+JNIEXPORT jboolean JNICALL Java_org_knowm_waveforms4j_DWF_FDwfDigitalInDividerSet
+  (JNIEnv *, jobject, jint);
+
+/*
+ * Class:     org_knowm_waveforms4j_DWF
+ * Method:    FDwfDigitalInSampleFormatSet
+ * Signature: (I)Z
+ */
+JNIEXPORT jboolean JNICALL Java_org_knowm_waveforms4j_DWF_FDwfDigitalInSampleFormatSet
+  (JNIEnv *, jobject, jint);
+
+/*
+ * Class:     org_knowm_waveforms4j_DWF
+ * Method:    FDwfDigitalInBufferSizeSet
+ * Signature: (I)Z
+ */
+JNIEXPORT jboolean JNICALL Java_org_knowm_waveforms4j_DWF_FDwfDigitalInBufferSizeSet
+  (JNIEnv *, jobject, jint);
+
+/*
+ * Class:     org_knowm_waveforms4j_DWF
+ * Method:    FDwfDigitalInTriggerSourceSet
+ * Signature: (B)Z
+ */
+JNIEXPORT jboolean JNICALL Java_org_knowm_waveforms4j_DWF_FDwfDigitalInTriggerSourceSet
+  (JNIEnv *, jobject, jbyte);
+
+/*
+ * Class:     org_knowm_waveforms4j_DWF
+ * Method:    FDwfDigitalInTriggerPositionSet
+ * Signature: (I)Z
+ */
+JNIEXPORT jboolean JNICALL Java_org_knowm_waveforms4j_DWF_FDwfDigitalInTriggerPositionSet
+  (JNIEnv *, jobject, jint);
+
+/*
+ * Class:     org_knowm_waveforms4j_DWF
+ * Method:    FDwfDigitalInAcquisitionModeSet
+ * Signature: (I)Z
+ */
+JNIEXPORT jboolean JNICALL Java_org_knowm_waveforms4j_DWF_FDwfDigitalInAcquisitionModeSet
+  (JNIEnv *, jobject, jint);
 
 /*
  * Class:     org_knowm_waveforms4j_DWF

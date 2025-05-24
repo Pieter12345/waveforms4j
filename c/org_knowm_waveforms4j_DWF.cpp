@@ -118,12 +118,14 @@ JNIEXPORT jboolean JNICALL Java_org_knowm_waveforms4j_DWF_FDwfDigitalOutEnableSe
     return FDwfDigitalOutEnableSet(hdwf, idxChannel, enable);
   }
 
+JNIEXPORT jboolean JNICALL Java_org_knowm_waveforms4j_DWF_FDwfDigitalOutTypeSet
+  (JNIEnv * env, jobject obj, jint idxChannel, jint dwfDigitalOutType) {
+    return FDwfDigitalOutTypeSet(hdwf, idxChannel, dwfDigitalOutType);
+  }
+
 JNIEXPORT jboolean JNICALL Java_org_knowm_waveforms4j_DWF_FDwfDigitalOutDividerSet
-  (JNIEnv * env, jobject obj, jint idxChannel, jint frequency){
-  
-    double hzSys;
-    FDwfDigitalOutInternalClockInfo(hdwf, &hzSys);
-    return FDwfDigitalOutDividerSet(hdwf, 0, hzSys/frequency/2);
+  (JNIEnv * env, jobject obj, jint idxChannel, jint divider){
+    return FDwfDigitalOutDividerSet(hdwf, idxChannel, divider);
   }
 
 JNIEXPORT jboolean JNICALL Java_org_knowm_waveforms4j_DWF_FDwfDigitalOutCounterSet
@@ -143,14 +145,121 @@ JNIEXPORT jboolean JNICALL Java_org_knowm_waveforms4j_DWF_FDwfDigitalOutConfigur
   
     return FDwfDigitalOutConfigure(hdwf, start);
   }
-  
+
+JNIEXPORT jboolean JNICALL Java_org_knowm_waveforms4j_DWF_FDwfDigitalOutDataSet
+  (JNIEnv * env, jobject obj, jint idxChannel, jbyteArray rgdData, jint size) {
+
+    jsize len = env->GetArrayLength(rgdData);
+    jbyte *body = env->GetByteArrayElements(rgdData, 0);
+    byte *input = new byte[len];
+    int i = 0;
+    for (i = 0; i < len; i++) {
+      input[i] = body[i];
+    }
+    return FDwfDigitalOutDataSet(hdwf, idxChannel, input, size);
+  }
+
+JNIEXPORT jboolean JNICALL Java_org_knowm_waveforms4j_DWF_FDwfDigitalOutRunSet
+  (JNIEnv * env, jobject obj, jdouble secRun) {
+    return FDwfDigitalOutRunSet(hdwf, secRun);
+  }
+
+JNIEXPORT jboolean JNICALL Java_org_knowm_waveforms4j_DWF_FDwfDigitalOutRepeatSet
+  (JNIEnv * env, jobject obj, jint cRepeat) {
+    return FDwfDigitalOutRepeatSet(hdwf, cRepeat);
+  }
+
+JNIEXPORT jbyte JNICALL Java_org_knowm_waveforms4j_DWF_FDwfDigitalOutStatus
+  (JNIEnv * env, jobject obj) {
+    DwfState dwfState;
+    FDwfDigitalOutStatus(hdwf, &dwfState);
+    return dwfState;
+  }
+
 JNIEXPORT jboolean JNICALL Java_org_knowm_waveforms4j_DWF_FDwfDigitalOutReset
   (JNIEnv * env, jobject obj){
   
     return FDwfDigitalOutReset(hdwf);
   }
-  
-  
+
+
+/************************************************************
+*                                                           *
+*                      Digital In                           *
+*                                                           *
+*************************************************************/
+
+JNIEXPORT jboolean JNICALL Java_org_knowm_waveforms4j_DWF_FDwfDigitalInReset
+  (JNIEnv * env, jobject obj) {
+    return FDwfDigitalInReset(hdwf);
+  }
+
+JNIEXPORT jboolean JNICALL Java_org_knowm_waveforms4j_DWF_FDwfDigitalInConfigure
+  (JNIEnv * env, jobject obj, jboolean fReconfigure, jboolean fStart) {
+    return FDwfDigitalInConfigure(hdwf, fReconfigure, fStart);
+  }
+
+JNIEXPORT jbyte JNICALL Java_org_knowm_waveforms4j_DWF_FDwfDigitalInStatus
+  (JNIEnv * env, jobject obj, jboolean fReadData) {
+    byte sts;
+    FDwfDigitalInStatus(hdwf, fReadData, &sts);
+    return sts;
+  }
+
+JNIEXPORT jbyteArray JNICALL Java_org_knowm_waveforms4j_DWF_FDwfDigitalInStatusData
+  (JNIEnv * env, jobject obj, jint countOfDataBytes) {
+    jbyte* rgdSamples = new jbyte[countOfDataBytes];
+    FDwfDigitalInStatusData(hdwf, rgdSamples, countOfDataBytes);
+
+    jbyteArray jvalues = env->NewByteArray(countOfDataBytes);
+    env->SetByteArrayRegion(jvalues, 0, countOfDataBytes, rgdSamples); 
+    return jvalues;
+  }
+
+JNIEXPORT jdouble JNICALL Java_org_knowm_waveforms4j_DWF_FDwfDigitalInInternalClockInfo
+  (JNIEnv * env, jobject obj) {
+    double phzFreq;
+    FDwfDigitalInInternalClockInfo(hdwf, &phzFreq);
+    return phzFreq;
+  }
+
+JNIEXPORT jint JNICALL Java_org_knowm_waveforms4j_DWF_FDwfDigitalInDividerInfo
+  (JNIEnv * env, jobject obj) {
+    unsigned int pdivMax;
+    FDwfDigitalInDividerInfo(hdwf, &pdivMax);
+    return pdivMax;
+  }
+
+JNIEXPORT jboolean JNICALL Java_org_knowm_waveforms4j_DWF_FDwfDigitalInDividerSet
+  (JNIEnv * env, jobject obj, jint div) {
+    return FDwfDigitalInDividerSet(hdwf, div);
+  }
+
+JNIEXPORT jboolean JNICALL Java_org_knowm_waveforms4j_DWF_FDwfDigitalInSampleFormatSet
+  (JNIEnv * env, jobject obj, jint nBits) {
+    return FDwfDigitalInSampleFormatSet(hdwf, nBits);
+  }
+
+JNIEXPORT jboolean JNICALL Java_org_knowm_waveforms4j_DWF_FDwfDigitalInBufferSizeSet
+  (JNIEnv * env, jobject obj, jint nSize) {
+    return FDwfDigitalInBufferSizeSet(hdwf, nSize);
+  }
+
+JNIEXPORT jboolean JNICALL Java_org_knowm_waveforms4j_DWF_FDwfDigitalInTriggerSourceSet
+  (JNIEnv * env, jobject obj, jbyte trigsrc) {
+    return FDwfDigitalInTriggerSourceSet(hdwf, trigsrc);
+  }
+
+JNIEXPORT jboolean JNICALL Java_org_knowm_waveforms4j_DWF_FDwfDigitalInTriggerPositionSet
+  (JNIEnv * env, jobject obj, jint cSamplesAfterTrigger) {
+    return FDwfDigitalInTriggerPositionSet(hdwf, cSamplesAfterTrigger);
+  }
+
+JNIEXPORT jboolean JNICALL Java_org_knowm_waveforms4j_DWF_FDwfDigitalInAcquisitionModeSet
+  (JNIEnv * env, jobject obj, jint acqmode) {
+    return FDwfDigitalInAcquisitionModeSet(hdwf, acqmode);
+  }
+
 
 /************************************************************
 *                                                           *
