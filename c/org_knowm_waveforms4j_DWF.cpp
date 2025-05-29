@@ -259,6 +259,30 @@ JNIEXPORT jboolean JNICALL Java_org_knowm_waveforms4j_DWF_FDwfDigitalInAcquisiti
   (JNIEnv * env, jobject obj, jint acqmode) {
     return FDwfDigitalInAcquisitionModeSet(hdwf, acqmode);
   }
+JNIEXPORT jboolean JNICALL Java_org_knowm_waveforms4j_DWF_FDwfDigitalInTriggerSet
+  (JNIEnv * env, jobject obj, jint fsLevelLow, jint fsLevelHigh, jint fsEdgeRise, jint fsEdgeFall) {
+    return FDwfDigitalInTriggerSet(hdwf, fsLevelLow, fsLevelHigh, fsEdgeRise, fsEdgeFall);
+  }
+
+JNIEXPORT jboolean JNICALL Java_org_knowm_waveforms4j_DWF_FDwfDigitalInTriggerResetSet
+  (JNIEnv * env, jobject obj, jint fsLevelLow, jint fsLevelHigh, jint fsEdgeRise, jint fsEdgeFall) {
+    return FDwfDigitalInTriggerResetSet(hdwf, fsLevelLow, fsLevelHigh, fsEdgeRise, fsEdgeFall);
+  }
+
+JNIEXPORT jboolean JNICALL Java_org_knowm_waveforms4j_DWF_FDwfDigitalInTriggerCountSet
+  (JNIEnv * env, jobject obj, jint cCount, jint fRestart) {
+    return FDwfDigitalInTriggerCountSet(hdwf, cCount, fRestart);
+  }
+
+JNIEXPORT jboolean JNICALL Java_org_knowm_waveforms4j_DWF_FDwfDigitalInTriggerLengthSet
+  (JNIEnv * env, jobject obj, jdouble secMin, jdouble secMax, jint idxSync) {
+    return FDwfDigitalInTriggerLengthSet(hdwf, secMin, secMax, idxSync);
+  }
+
+JNIEXPORT jboolean JNICALL Java_org_knowm_waveforms4j_DWF_FDwfDigitalInTriggerMatchSet
+  (JNIEnv * env, jobject obj, jint iPin, jint fsMask, jint fsValue, jint cBitStuffing) {
+    return FDwfDigitalInTriggerMatchSet(hdwf, iPin, fsMask, fsValue, cBitStuffing);
+  }
 
 
 /************************************************************

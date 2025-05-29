@@ -293,6 +293,46 @@ JNIEXPORT jboolean JNICALL Java_org_knowm_waveforms4j_DWF_FDwfDigitalInAcquisiti
 
 /*
  * Class:     org_knowm_waveforms4j_DWF
+ * Method:    FDwfDigitalInTriggerSet
+ * Signature: (IIII)Z
+ */
+JNIEXPORT jboolean JNICALL Java_org_knowm_waveforms4j_DWF_FDwfDigitalInTriggerSet
+  (JNIEnv *, jobject, jint, jint, jint, jint);
+
+/*
+ * Class:     org_knowm_waveforms4j_DWF
+ * Method:    FDwfDigitalInTriggerResetSet
+ * Signature: (IIII)Z
+ */
+JNIEXPORT jboolean JNICALL Java_org_knowm_waveforms4j_DWF_FDwfDigitalInTriggerResetSet
+  (JNIEnv *, jobject, jint, jint, jint, jint);
+
+/*
+ * Class:     org_knowm_waveforms4j_DWF
+ * Method:    FDwfDigitalInTriggerCountSet
+ * Signature: (II)Z
+ */
+JNIEXPORT jboolean JNICALL Java_org_knowm_waveforms4j_DWF_FDwfDigitalInTriggerCountSet
+  (JNIEnv *, jobject, jint, jint);
+
+/*
+ * Class:     org_knowm_waveforms4j_DWF
+ * Method:    FDwfDigitalInTriggerLengthSet
+ * Signature: (DDI)Z
+ */
+JNIEXPORT jboolean JNICALL Java_org_knowm_waveforms4j_DWF_FDwfDigitalInTriggerLengthSet
+  (JNIEnv *, jobject, jdouble, jdouble, jint);
+
+/*
+ * Class:     org_knowm_waveforms4j_DWF
+ * Method:    FDwfDigitalInTriggerMatchSet
+ * Signature: (IIII)Z
+ */
+JNIEXPORT jboolean JNICALL Java_org_knowm_waveforms4j_DWF_FDwfDigitalInTriggerMatchSet
+  (JNIEnv *, jobject, jint, jint, jint, jint);
+
+/*
+ * Class:     org_knowm_waveforms4j_DWF
  * Method:    FDwfAnalogInChannelEnableSet
  * Signature: (IZ)Z
  */

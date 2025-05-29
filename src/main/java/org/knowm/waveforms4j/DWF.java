@@ -328,6 +328,16 @@ public class DWF {
 
 //  public native ACQMODE FDwfDigitalInAcquisitionModeGet();
 
+  public native boolean FDwfDigitalInTriggerSet(int fsLevelLow, int fsLevelHigh, int fsEdgeRise, int fsEdgeFall);
+
+  public native boolean FDwfDigitalInTriggerResetSet(int fsLevelLow, int fsLevelHigh, int fsEdgeRise, int fsEdgeFall);
+
+  public native boolean FDwfDigitalInTriggerCountSet(int cCount, int fRestart);
+
+  public native boolean FDwfDigitalInTriggerLengthSet(double secMin, double secMax, int idxSync);
+
+  public native boolean FDwfDigitalInTriggerMatchSet(int iPin, int fsMask, int fsValue, int cBitStuffing);
+
   // ///////////////////////////////////////////////////////////
   // Analog In ////////////////////////////////////////////////
   // ///////////////////////////////////////////////////////////
