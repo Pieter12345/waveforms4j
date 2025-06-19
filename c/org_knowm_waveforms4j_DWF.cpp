@@ -1,9 +1,11 @@
 #include <jni.h>
 #include "org_knowm_waveforms4j_DWF.h"
 #include "dwf.h"
+#include "stdint.h"
 
 HDWF hdwf;
 
+#define byte uint8_t
 
 /************************************************************
 *                                                           *
