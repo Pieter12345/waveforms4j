@@ -339,6 +339,26 @@ public class DWF {
   public native boolean FDwfDigitalInTriggerMatchSet(int iPin, int fsMask, int fsValue, int cBitStuffing);
 
   // ///////////////////////////////////////////////////////////
+  // I2C //////////////////////////////////////////////////////
+  // ///////////////////////////////////////////////////////////
+
+  public native boolean FDwfDigitalI2cReset();
+
+  public native int FDwfDigitalI2cClear();
+
+  public native boolean FDwfDigitalI2cRateSet(double hz);
+
+  public native boolean FDwfDigitalI2cSclSet(int idxChannel);
+
+  public native boolean FDwfDigitalI2cSdaSet(int idxChannel);
+
+  public native int FDwfDigitalI2cWriteRead(byte adr8bits, byte[] rgbTx, int cTx, byte[] rgbRx, int cRx);
+
+  public native int FDwfDigitalI2cRead(byte adr8bits, byte[] rgbRx, int cRx);
+
+  public native int FDwfDigitalI2cWrite(byte adr8bits, byte[] rgbTx, int cTx);
+
+  // ///////////////////////////////////////////////////////////
   // Analog In ////////////////////////////////////////////////
   // ///////////////////////////////////////////////////////////
 

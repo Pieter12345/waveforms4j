@@ -333,6 +333,70 @@ JNIEXPORT jboolean JNICALL Java_org_knowm_waveforms4j_DWF_FDwfDigitalInTriggerMa
 
 /*
  * Class:     org_knowm_waveforms4j_DWF
+ * Method:    FDwfDigitalI2cReset
+ * Signature: ()Z
+ */
+JNIEXPORT jboolean JNICALL Java_org_knowm_waveforms4j_DWF_FDwfDigitalI2cReset
+  (JNIEnv *, jobject);
+
+/*
+ * Class:     org_knowm_waveforms4j_DWF
+ * Method:    FDwfDigitalI2cClear
+ * Signature: ()I
+ */
+JNIEXPORT jint JNICALL Java_org_knowm_waveforms4j_DWF_FDwfDigitalI2cClear
+  (JNIEnv *, jobject);
+
+/*
+ * Class:     org_knowm_waveforms4j_DWF
+ * Method:    FDwfDigitalI2cRateSet
+ * Signature: (D)Z
+ */
+JNIEXPORT jboolean JNICALL Java_org_knowm_waveforms4j_DWF_FDwfDigitalI2cRateSet
+  (JNIEnv *, jobject, jdouble);
+
+/*
+ * Class:     org_knowm_waveforms4j_DWF
+ * Method:    FDwfDigitalI2cSclSet
+ * Signature: (I)Z
+ */
+JNIEXPORT jboolean JNICALL Java_org_knowm_waveforms4j_DWF_FDwfDigitalI2cSclSet
+  (JNIEnv *, jobject, jint);
+
+/*
+ * Class:     org_knowm_waveforms4j_DWF
+ * Method:    FDwfDigitalI2cSdaSet
+ * Signature: (I)Z
+ */
+JNIEXPORT jboolean JNICALL Java_org_knowm_waveforms4j_DWF_FDwfDigitalI2cSdaSet
+  (JNIEnv *, jobject, jint);
+
+/*
+ * Class:     org_knowm_waveforms4j_DWF
+ * Method:    FDwfDigitalI2cWriteRead
+ * Signature: (B[BI[BI)I
+ */
+JNIEXPORT jint JNICALL Java_org_knowm_waveforms4j_DWF_FDwfDigitalI2cWriteRead
+  (JNIEnv *, jobject, jbyte, jbyteArray, jint, jbyteArray, jint);
+
+/*
+ * Class:     org_knowm_waveforms4j_DWF
+ * Method:    FDwfDigitalI2cRead
+ * Signature: (B[BI)I
+ */
+JNIEXPORT jint JNICALL Java_org_knowm_waveforms4j_DWF_FDwfDigitalI2cRead
+  (JNIEnv *, jobject, jbyte, jbyteArray, jint);
+
+/*
+ * Class:     org_knowm_waveforms4j_DWF
+ * Method:    FDwfDigitalI2cWrite
+ * Signature: (B[BI)I
+ */
+JNIEXPORT jint JNICALL Java_org_knowm_waveforms4j_DWF_FDwfDigitalI2cWrite
+  (JNIEnv *, jobject, jbyte, jbyteArray, jint);
+
+/*
+ * Class:     org_knowm_waveforms4j_DWF
  * Method:    FDwfAnalogInChannelEnableSet
  * Signature: (IZ)Z
  */

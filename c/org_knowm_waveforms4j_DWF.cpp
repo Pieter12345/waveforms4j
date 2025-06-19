@@ -286,6 +286,65 @@ JNIEXPORT jboolean JNICALL Java_org_knowm_waveforms4j_DWF_FDwfDigitalInTriggerMa
     return FDwfDigitalInTriggerMatchSet(hdwf, iPin, fsMask, fsValue, cBitStuffing);
   }
 
+/************************************************************
+*                                                           *
+*                           I2C                             *
+*                                                           *
+*************************************************************/
+
+JNIEXPORT jboolean JNICALL Java_org_knowm_waveforms4j_DWF_FDwfDigitalI2cReset
+  (JNIEnv * env, jobject obj) {
+    return FDwfDigitalI2cReset(hdwf);
+  }
+
+JNIEXPORT jint JNICALL Java_org_knowm_waveforms4j_DWF_FDwfDigitalI2cClear
+  (JNIEnv *, jobject) {
+    int pfFree = 0;
+    FDwfDigitalI2cClear(hdwf, &pfFree);
+    return pfFree;
+  }
+
+JNIEXPORT jboolean JNICALL Java_org_knowm_waveforms4j_DWF_FDwfDigitalI2cRateSet
+  (JNIEnv * env, jobject obj, jdouble hz) {
+    return FDwfDigitalI2cRateSet(hdwf, hz);
+  }
+
+JNIEXPORT jboolean JNICALL Java_org_knowm_waveforms4j_DWF_FDwfDigitalI2cSclSet
+  (JNIEnv * env, jobject obj, jint idxChannel) {
+    return FDwfDigitalI2cSclSet(hdwf, idxChannel);
+  }
+
+JNIEXPORT jboolean JNICALL Java_org_knowm_waveforms4j_DWF_FDwfDigitalI2cSdaSet
+  (JNIEnv * env, jobject obj, jint idxChannel) {
+    return FDwfDigitalI2cSdaSet(hdwf, idxChannel);
+  }
+
+JNIEXPORT jint JNICALL Java_org_knowm_waveforms4j_DWF_FDwfDigitalI2cWriteRead
+  (JNIEnv * env, jobject obj, jbyte adr8bits, jbyteArray rgbTx, jint cTx, jbyteArray rgbRx, jint cRx) {
+    int pNak = -1;
+    jbyte* rgbTxBody = env->GetByteArrayElements(rgbTx, 0);
+    jbyte* rgbRxBody = env->GetByteArrayElements(rgbRx, 0);
+    FDwfDigitalI2cWriteRead(hdwf, adr8bits, (unsigned char*) rgbTxBody, cTx, (unsigned char*) rgbRxBody, cRx, &pNak);
+	env->ReleaseByteArrayElements(rgbRx, rgbRxBody, 0);
+    return pNak;
+  }
+
+JNIEXPORT jint JNICALL Java_org_knowm_waveforms4j_DWF_FDwfDigitalI2cRead
+  (JNIEnv * env, jobject obj, jbyte adr8bits, jbyteArray rgbRx, jint cRx) {
+    int pNak = -1;
+    jbyte* rgbRxBody = env->GetByteArrayElements(rgbRx, 0);
+    FDwfDigitalI2cRead(hdwf, adr8bits, (unsigned char*) rgbRxBody, cRx, &pNak);
+	env->ReleaseByteArrayElements(rgbRx, rgbRxBody, 0);
+    return pNak;
+  }
+
+JNIEXPORT jint JNICALL Java_org_knowm_waveforms4j_DWF_FDwfDigitalI2cWrite
+  (JNIEnv * env, jobject obj, jbyte adr8bits, jbyteArray rgbTx, jint cTx) {
+    int pNak = -1;
+    jbyte* rgbTxBody = env->GetByteArrayElements(rgbTx, 0);
+    FDwfDigitalI2cWrite(hdwf, adr8bits, (unsigned char*) rgbTxBody, cTx, &pNak);
+    return pNak;
+  }
 
 /************************************************************
 *                                                           *
